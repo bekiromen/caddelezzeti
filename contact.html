@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İletişim | Cadde Lezzeti</title>
+  <meta name="description" content="Cadde Lezzeti iletişim: sipariş, öneri ve iş birlikleri.">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 220px;
+  height: 100%;
+  background: #111;
+  padding: 20px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column; /* ALT ALTA SIRALA */
+  align-items: flex-start; /* sola hizala */
+  transition: right 0.3s ease;
+  z-index: 1001;
+}
+
+.mobile-menu a {
+  width: 100%; /* link tam genişlikte olsun */
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+  font-size: 16px;
+}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .map-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .map-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    form.card input,
+    form.card textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    footer .cols {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    footer .cols div {
+      margin-bottom: 10px;
+    }
+
+    /* --- Mobil Menü --- */
+    .menu {
+      display: flex;
+      gap: 16px;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #fff;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 220px;
+      height: 100%;
+      background: #111;
+      padding: 20px;
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5);
+      flex-direction: column;
+      gap: 12px;
+      transition: right 0.3s ease;
+      z-index: 1001;
+    }
+
+    .mobile-menu a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    /* Menü arkaplan overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      z-index: 1000;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Tablet ve üstü */
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer .cols {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      .menu {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: none !important;
+      }
+
+      .overlay {
+        display: none !important;
+      }
+    }
+
+    /* Mobilde menüyü gizle */
+    @media (max-width: 767px) {
+      .menu {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="nav"
+    style="display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#141414;color:#fff;">
+    <div class="brand" style="display:flex;align-items:center;gap:8px;">
+      <img src="assets/img/logo.png" alt="Cadde Lezzeti logo" style="height:40px">
+      <div class="title">Cadde Lezzeti</div>
+    </div>
+
+    <!-- Masaüstü Menü -->
+    <nav class="menu">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="menu.html">Menü</a>
+      <a href="about.html">Hakkımızda</a>
+      <a href="contact.html" class="cta">İletişim</a>
+    </nav>
+
+    <!-- Mobil Hamburger -->
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Mobil Açılır Menü -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="menu.html">Menü</a>
+    <a href="about.html">Hakkımızda</a>
+    <a href="contact.html">İletişim</a>
+  </div>
+
+  <section class="container section" style="padding:20px;">
+    <h2>İletişim</h2>
+    <p class="lead">Öneri ve iş birlikleri için bize ulaşın.</p>
+
+    <div class="grid">
+      <form class="card" action="#" method="post"
+        style="padding:16px;background:#1c1c1c;border-radius:12px;">
+        <label>Ad Soyad</label>
+        <input name="name" required
+          style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px">
+        <label>E-posta</label>
+        <input name="email" type="email" required
+          style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px">
+        <label>Mesajınız</label>
+        <textarea name="msg" rows="6" required
+          style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px"></textarea>
+        <button class="btn red" type="submit">Gönder</button>
+        <p style="font-size:12px;color:#bbb;margin-top:8px">Demo form – sunucu bağlantısı yoktur.</p>
+      </form>
+    </div>
+
+    <div class="map-container" style="margin-top:32px">
+      <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <footer style="background:#111;color:#fff;padding:20px 0;">
+    <div class="container section">
+      <div class="cols">
+        <div>
+          <img src="assets/img/sokakburger.png" alt="Cadde Burger Logo" style="height:56px">
+          <p style="max-width:520px;margin-top:10px">
+            Cadde ruhunu ve taptaze malzemeleri buluşturuyoruz. Burger ve hot dog'u en lezzetli haliyle sunuyoruz.
+          </p>
+        </div>
+        <div>
+          <h4>Bağlantılar</h4>
+          <a href="index.html">Ana Sayfa</a><br>
+          <a href="menu.html">Menü</a><br>
+          <a href="about.html">Hakkımızda</a><br>
+          <a href="contact.html">İletişim</a>
+        </div>
+        <div>
+          <h4>İletişim</h4>
+          <a href="mailto:sokakburgerhotdog@gmail.com">caddeburgerhotdog@gmail.com</a><br>
+          <a href="tel:+905437485476">+90 543 748 5476</a><br>
+          <span>Çankırı, Türkiye</span>
+        </div>
+      </div>
+    </div>
+    <div class="container copy" style="margin-top:10px;">© <span data-year></span> Cadde Lezzeti • Tüm hakları saklıdır.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+    }
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
