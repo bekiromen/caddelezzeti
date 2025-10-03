@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CaddeLezzeti - Bayilik Başvurusu</title>
+  <style>
+    :root{--brand:#d63447;--dark:#111;--muted:#666;--card:#fff;--radius:12px}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#f6f7fb; color:var(--dark); margin:0}
+    header{background:linear-gradient(90deg,#fff 0%, #fff 60%); padding:18px 24px; box-shadow:0 2px 6px rgba(10,10,10,0.04); position:sticky; top:0; z-index:50}
+    .container{max-width:1100px;margin:28px auto;padding:0 18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand h1{font-size:20px;margin:0}
+
+    .card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    .grid{display:grid;grid-template-columns:1fr 420px;gap:20px}
+
+    form .row{display:flex;gap:12px}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type=text], input[type=email], input[type=tel], select, textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #e6e8ef;background:#fff;font-size:15px}
+    textarea{min-height:120px;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
+
+    .filebox{border:1px dashed #e1e4f0;padding:14px;border-radius:10px;text-align:center;background:#fbfbfe}
+    button.primary{background:var(--brand);color:#fff;padding:12px 18px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+    .muted{color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr;}
+      .card{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between">
+      <div class="brand"><img src="/assets/logo.png" alt="CaddeLezzeti" width="44" height="44" style="border-radius:8px;object-fit:cover"/><h1>CaddeLezzeti</h1></div>
+      <nav style="display:flex;gap:14px;align-items:center">
+        <a href="/" class="muted">Anasayfa</a>
+        <a href="/menu" class="muted">Menü</a>
+        <a href="/iletisim" class="muted">İletişim</a>
+        <a href="/bayilik-basvuru.html" style="color:var(--brand);font-weight:600">Bayilik Başvurusu</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section class="card">
+        <h2 style="margin-top:0">Bayilik Başvuru Formu</h2>
+        <p class="small">CaddeLezzeti bayiliği için ön başvurunuzu bu form aracılığıyla yapabilirsiniz. Tüm alanlar doğru doldurulduğunda yetkili ekip size geri dönecektir.</p>
+
+        <form id="bayilikForm" class="mt-16" onsubmit="handleSubmit(event)">
+          <div style="display:grid;gap:12px;margin-top:14px">
+            <div>
+              <label for="basvuran">Başvuran / Şirket Adı</label>
+              <input id="basvuran" name="basvuran" type="text" required placeholder="Adınız veya şirket adı" />
+            </div>
+            <div style="display:flex;gap:12px">
+              <div style="flex:1">
+                <label for="telefon">Telefon</label>
+                <input id="telefon" name="telefon" type="tel" required placeholder="0 (5xx) xxx xx xx" />
+              </div>
+              <div style="width:48%">
+                <label for="email">E‑posta</label>
+                <input id="email" name="email" type="email" required placeholder="ornek@adres.com" />
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px">
+              <div style="flex:1">
+                <label for="sehir">Şehir</label>
+                <input id="sehir" name="sehir" type="text" required placeholder="Örn: Ankara" />
+              </div>
+              <div style="width:48%">
+                <label for="adresTip">Adres Tipi</label>
+                <select id="adresTip" name="adresTip">
+                  <option value="mağaza">Mağaza / Dükkan</option>
+                  <option value="sokak">Sokak Satışı</option>
+                  <option value="lokasyon">AVM / Lokasyon</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="adres">Açık Adres / Notlar</label>
+              <textarea id="adres" name="adres" placeholder="Mağaza lokasyonu, metrekare, yaya trafiği vb."></textarea>
+            </div>
+
+            <div style="display:flex;gap:12px">
+              <div style="flex:1">
+                <label for="magazaBoyut">Mağaza Alanı (m²)</label>
+                <input id="magazaBoyut" name="magazaBoyut" type="text" placeholder="Örn: 40" />
+              </div>
+              <div style="flex:1">
+                <label for="acilis">Tahmini Açılış Tarihi</label>
+                <input id="acilis" name="acilis" type="text" placeholder="GG/AA/YYYY veya 'Hemen'" />
+              </div>
+            </div>
+
+            <div>
+              <label for="message">Başvuru Mesajı</label>
+              <textarea id="message" name="message" placeholder="Kısa iş planınız, sermaye durumu, önceki deneyimler..." required></textarea>
+            </div>
+
+            <div>
+              <label>İş Planı / Ruhsat / Fotoğraf (isteğe bağlı)</label>
+              <label class="filebox">
+                <input id="file" name="file" type="file" accept="image/*,.pdf,.doc,.docx" style="display:none" onchange="updateFileLabel(this)" />
+                <div id="fileLabel">Dosya seçmek için tıklayın veya buraya sürükleyin</div>
+              </label>
+              <div id="fileName" class="small muted" style="margin-top:8px"></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:12px">
+              <input id="kvkk" name="kvkk" type="checkbox" required />
+              <label for="kvkk" class="small">Kişisel verilerimin başvuru amacıyla işlenmesini kabul ediyorum.</label>
+            </div>
+
+            <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:6px">
+              <button type="submit" class="primary">Başvuruyu Gönder</button>
+            </div>
+          </div>
+        </form>
+
+        <div id="notice" style="display:none;margin-top:14px;padding:12px;border-radius:10px;background:#f0fff4;color:#064e3b">Başvurunuz alındı. En kısa zamanda size dönüş yapılacaktır.</div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0">Başvuru Öncesi Bilgilendirme</h3>
+          <ul class="small muted">
+            <li>Başvuru ön değerlendirmesi 3–5 iş günü içinde yapılır.</li>
+            <li>Gerekli görüldüğünde yetkili ekip saha ziyareti talep edebilir.</li>
+            <li>Girdiğiniz iletişim bilgileri üzerinden dönüş sağlanacaktır.</li>
+          </ul>
+          <hr style="margin:12px 0"/>
+          <p class="small">Alternatif olarak formu doldurmak istemezseniz, <a href="mailto:bayilik@caddellezzeti.com">bayilik@caddellezzeti.com</a> adresine mail atabilirsiniz.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer style="margin-top:38px;padding:18px 0;background:transparent">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div class="small muted">© CaddeLezzeti</div>
+      <div class="small muted">Hazırlayan: Web Ekibi</div>
+    </div>
+  </footer>
+
+  <script>
+    // small UX helpers
+    function updateFileLabel(input){
+      const fileNameEl = document.getElementById('fileName');
+      if(input.files && input.files.length){
+        fileNameEl.textContent = input.files[0].name + ' (' + Math.round(input.files[0].size/1024) + ' KB)';
+      } else fileNameEl.textContent = '';
+    }
+
+    async function handleSubmit(e){
+      e.preventDefault();
+      const form = document.getElementById('bayilikForm');
+      const data = new FormData(form);
+
+      // basic client side checks
+      if(!data.get('kvkk')){ alert('Lütfen KVKK onayı verin.'); return }
+
+      // show loading state
+      const btn = form.querySelector('button[type=submit]');
+      const previous = btn.innerHTML; btn.disabled = true; btn.innerHTML = 'Gönderiliyor...';
+
+      try{
+        // POST to server endpoint - replace '/api/bayilik' with your real endpoint
+        const res = await fetch('/api/bayilik', { method:'POST', body:data });
+        if(res.ok){
+          form.reset(); document.getElementById('notice').style.display = 'block';
+        } else {
+          // fallback: open mailto with form summary (useful if no backend)
+          const body = encodeURIComponent(Object.fromEntries(data.entries()).map(kv=>kv.join(': ')).join('\n'));
+          window.location.href = 'mailto:bayilik@caddellezzeti.com?subject=Bayilik Başvurusu&body='+body;
+        }
+      } catch(err){
+        console.error(err);
+        alert('Başvuru gönderilirken bir hata oluştu. Lütfen e-posta ile gönderin.');
+      } finally{
+        btn.disabled=false; btn.innerHTML = previous;
+      }
+    }
+
+    // drag & drop to filebox
+    const fileLabel = document.querySelector('.filebox');
+    fileLabel.addEventListener('click',()=> document.getElementById('file').click());
+    fileLabel.addEventListener('dragover', (e)=>{ e.preventDefault(); fileLabel.style.borderColor='var(--brand)'; });
+    fileLabel.addEventListener('dragleave', ()=>{ fileLabel.style.borderColor='' });
+    fileLabel.addEventListener('drop', (e)=>{
+      e.preventDefault(); fileLabel.style.borderColor='';
+      const files = e.dataTransfer.files; if(files.length) document.getElementById('file').files = files; updateFileLabel(document.getElementById('file'));
+    });
+  </script>
+
+  <!--
+    Entegrasyon notları (Sunucu tarafı örneği):
+
+    1) Netlify kullanıyorsanız form elementine `data-netlify="true"` ekleyip action/endpoint gerekmez.
+
+    2) Basit PHP endpoint (örnek):
+
+    <?php
+    // bayilik-handler.php
+    // Basit eposta ile yönlendirme örneği - daha güvenli hale getirilmelidir
+    if($_SERVER['REQUEST_METHOD']==='POST'){
+      $to = 'bayilik@caddellezzeti.com';
+      $subject = 'Yeni Bayilik Başvurusu - ' . ($_POST['basvuran'] ?? '');
+      $body = "Başvuran: {$_POST['basvuran']}\nTelefon: {$_POST['telefon']}\nEmail: {$_POST['email']}\nŞehir: {$_POST['sehir']}\nAdres Tipi: {$_POST['adresTip']}\nAdres: {$_POST['adres']}\nMesaj: {$_POST['message']}\n";
+      $headers = "From: noreply@caddellezzeti.com" . "\r\n";
+      mail($to,$subject,$body,$headers);
+      http_response_code(200);
+      echo json_encode(['ok'=>true]);
+    }
+    ?>
+
+    3) Güvenlik: Sunucu tarafında dosya yükleme kabul ediyorsanız MIME tipi/uzantı kontrolü, dosya boyutu limiti ve virüs taraması uygulayın.
+  -->
+</body>
+</html>
