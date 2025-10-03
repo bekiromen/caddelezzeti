@@ -17,10 +17,14 @@
   .sl-overlay.active{ display:block; }
   @media (max-width: 767.98px){ header.nav .menu{ display:none !important; } .sl-hamburger{ display:block; } }
   @media (min-width: 768px){ .sl-mobile-menu, .sl-overlay{ display:none !important; } }
-  form label{display:block;font-size:14px;margin:8px 0 4px;}
-  form input, form textarea, form select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;}
-  form textarea{min-height:100px;}
-  form button{background:#d63447;color:#fff;padding:12px 18px;border:0;border-radius:6px;cursor:pointer;font-weight:bold;}
+  form{max-width:720px;margin:0 auto;background:#fff;padding:28px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.1);} 
+  form h3{margin-top:0;color:#d63447;}
+  form label{display:block;font-size:14px;margin:12px 0 6px;font-weight:600;}
+  form input, form textarea, form select{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:15px;}
+  form textarea{min-height:120px;}
+  form button{background:#d63447;color:#fff;padding:14px 20px;border:0;border-radius:8px;cursor:pointer;font-weight:bold;margin-top:18px;width:100%;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:768px){.form-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -62,23 +66,57 @@
 <section class="container section">
   <h2>Bayilik Başvuru Formu</h2>
   <form id="bayilikForm" onsubmit="handleSubmit(event)">
-    <label for="ad">Adınız / Şirket Adı</label>
-    <input type="text" id="ad" name="ad" required>
+    <div class="form-grid">
+      <div>
+        <label for="ad">Ad Soyad / Firma Adı</label>
+        <input type="text" id="ad" name="ad" required>
+      </div>
+      <div>
+        <label for="tc">T.C. Kimlik No / Vergi No</label>
+        <input type="text" id="tc" name="tc" required>
+      </div>
+      <div>
+        <label for="telefon">Telefon</label>
+        <input type="tel" id="telefon" name="telefon" required>
+      </div>
+      <div>
+        <label for="email">E-posta</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="sehir">Şehir</label>
+        <input type="text" id="sehir" name="sehir" required>
+      </div>
+      <div>
+        <label for="yatirim">Yatırım Bütçesi (₺)</label>
+        <input type="number" id="yatirim" name="yatirim" required>
+      </div>
+      <div>
+        <label for="deneyim">Sektör Deneyimi</label>
+        <select id="deneyim" name="deneyim" required>
+          <option value="">Seçiniz</option>
+          <option>Yok</option>
+          <option>1-3 Yıl</option>
+          <option>3-5 Yıl</option>
+          <option>5+ Yıl</option>
+        </select>
+      </div>
+      <div>
+        <label for="mekan">Mevcut Dükkan Durumu</label>
+        <select id="mekan" name="mekan" required>
+          <option value="">Seçiniz</option>
+          <option>Var (Kendi mülküm)</option>
+          <option>Var (Kiralık)</option>
+          <option>Yok, açmayı düşünüyorum</option>
+        </select>
+      </div>
+    </div>
 
-    <label for="telefon">Telefon</label>
-    <input type="tel" id="telefon" name="telefon" required>
-
-    <label for="email">E-posta</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="sehir">Şehir</label>
-    <input type="text" id="sehir" name="sehir" required>
-
-    <label for="adres">Adres / Notlar</label>
+    <label for="adres">Adres</label>
     <textarea id="adres" name="adres"></textarea>
 
-    <label for="mesaj">Mesajınız</label>
-    <textarea id="mesaj" name="mesaj" required></textarea>
+    <label for="mesaj">Ek Bilgiler</label>
+    <textarea id="mesaj" name="mesaj" placeholder="Kısaca kendinizi ve iş planınızı anlatın..." required></textarea>
 
     <div style="margin:12px 0">
       <input type="checkbox" id="kvkk" name="kvkk" required>
