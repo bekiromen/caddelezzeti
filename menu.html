@@ -9,140 +9,26 @@
 <link rel="stylesheet" href="assets/css/styles.css">
 
 <style>
-  /* === Mobil menü: çakışmayan sınıflar === */
-  .sl-hamburger{
-    display:none; font-size:28px; cursor:pointer; background:none; border:0; color:inherit;
-  }
-  .sl-mobile-menu{
-    position:fixed; top:0; right:0; height:100%; width:240px;
-    background:#111; padding:20px; display:flex; flex-direction:column; gap:12px;
-    transform:translateX(100%); transition:transform .25s ease; z-index:1001;
-  }
-  .sl-mobile-menu a{ color:#fff; text-decoration:none; padding:10px 0; border-bottom:1px solid #333; }
-  .sl-mobile-menu.active{ transform:translateX(0); }
-  .sl-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,.4); display:none; z-index:1000;
-  }
-  .sl-overlay.active{ display:block; }
-
-  /* Küçük ekranda ana menüyü gizle, hamburgeri göster */
-  @media (max-width: 767.98px){
-    header.nav .menu{ display:none !important; }
-    .sl-hamburger{ display:block; }
-  }
-  /* Masaüstünde mobil menüyü tamamen kapat */
-  @media (min-width: 768px){
-    .sl-mobile-menu, .sl-overlay{ display:none !important; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    text-align: center;
   }
 
-  /* === Sadece küçük ekranda ızgarayı tek sütuna düşür === */
-  .stack-sm{} /* varsayılanı bozma */
-  @media (max-width: 767.98px){
-    .stack-sm{ display:grid; grid-template-columns:1fr !important; gap:24px; }
+  .menu-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
   }
-
-  /* Footer kolonları mobilde alt alta */
-  footer .cols{ display:grid; grid-template-columns:1fr; gap:24px; }
-  @media (min-width:768px){ footer .cols{ grid-template-columns:1fr 1fr 1fr; } }
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="container nav-inner">
-    <div class="brand">
-      <img src="assets/img/logo.png" alt="Cadde Lezzeti logo">
-      <div class="title">Cadde Lezzeti</div>
-    </div>
-    <nav class="menu">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="menu.html">Menü</a>
-      <a href="about.html">Hakkımızda</a>
-      <a href="contact.html" class="cta">İletişim</a>
-    </nav>
-
-    <!-- Sağ üst hamburger (mobil) -->
-    <button class="sl-hamburger" aria-label="Menüyü aç" onclick="slToggleMenu()">☰</button>
-  </div>
-</header>
-
-<!-- Mobil açılır menü + karartma -->
-<div class="sl-overlay" id="slOverlay" onclick="slToggleMenu(false)"></div>
-<nav class="sl-mobile-menu" id="slMobileMenu" aria-hidden="true">
-  <a href="index.html" onclick="slToggleMenu(false)">Ana Sayfa</a>
-  <a href="menu.html" onclick="slToggleMenu(false)">Menü</a>
-  <a href="about.html" onclick="slToggleMenu(false)">Hakkımızda</a>
-  <a href="contact.html" onclick="slToggleMenu(false)">İletişim</a>
-</nav>
-
-<section class="container section">
-  <h2>Menü</h2>
-  <p class="lead">Burger, hot dog ve cadde atıştırmalıkları.</p>
-
-  <h1>Burger ve Hot Dog</h1>
-  <!-- Sadece stack-sm eklendi -->
-  <div class="grid grid-3 stack-sm">
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Klasik Burger</h3><p>karamelize soğan, marul,domates, turşu.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Mexican Burger</h3><p>Marul, domates, turşu, jalapeno biber, sriracha sos.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Cheese Burger</h3><p>Marul, domates, karamelize soğan, turşu, cheddar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Chef Burger</h3><p>Marul, domates, turşu, yumurta.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>BBQ Burger</h3><p>Marul, domates, barbekü sos, karamelize soğan, cheddar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Double Burger</h3><p>Çift köfte, marul, domates, turşu, karamelize soğan.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Chicken Burger</h3><p>Çıtır tavuk, marul, domates, turşu, karamelize soğan.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Klasik Hot Dog</h3><p>Sosis, ketçap, hardal, turşu.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Sokak Hot Dog</h3><p>Sosis, soğan, turşu, soslar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Cheese Dog</h3><p>Sosis, cheedar, turşu, soslar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>BBQ Dog</h3><p>Sosis, barbekü, karamelize soğan, soslar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Mexican Dog</h3><p>Sosis, jalapeno biber, sriracha, soslar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Krauts Dog</h3><p>Sosis, lahana turşu, hardal.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Russian Dog</h3><p>Sosis, Rus salatası, turşu, soslar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Nacho Dog</h3><p>Sosis, cips kırıkları, cheedar, soslar.</p><div class="price">₺200</div></div></article>
-    <article class="card"><img src="assets/img/sokakburger.png" alt=""><div class="content"><h3>Breakfast Dog</h3><p>Sosis, yumurta, kaşar.</p><div class="price">₺200</div></div></article>
-  </div>
+<section>
+  <img src="assets/img/menu.png" alt="Cadde Lezzeti Menü" class="menu-img">
 </section>
-
-<footer>
-  <div class="container section">
-    <div class="cols">
-      <div>
-        <img src="assets/img/sokakburger.png" alt="Cadde Burger Logo" style="height:56px">
-        <p style="max-width:520px;margin-top:10px">Cadde ruhunu ve taptaze malzemeleri buluşturuyoruz. Burger ve hot dog'u en lezzetli haliyle sunuyoruz.</p>
-        <div class="notice">Nurullah Özkan</div>
-      </div>
-      <div>
-        <h4>Bağlantılar</h4>
-        <a href="index.html">Ana Sayfa</a>
-        <a href="menu.html">Menü</a>
-        <a href="about.html">Hakkımızda</a>
-        <a href="contact.html">İletişim</a>
-      </div>
-      <div>
-        <h4>İletişim</h4>
-        <a href="mailto:info@sokaklezzeti.local">caddeburgerhotdog@gmail.com</a>
-        <a href="tel:+900000000000">+90 543 748 5476</a>
-        <a>Çankırı, Türkiye</a>
-      </div>
-    </div>
-  </div>
-  <div class="container copy">© <span data-year></span> Cadde Lezzeti • Tüm hakları saklıdır.</div>
-</footer>
-
-<script>
-  // Mobil menü aç/kapat
-  function slToggleMenu(open){
-    const menu = document.getElementById('slMobileMenu');
-    const overlay = document.getElementById('slOverlay');
-    const willOpen = (typeof open === 'boolean') ? open : !menu.classList.contains('active');
-    menu.classList.toggle('active', willOpen);
-    overlay.classList.toggle('active', willOpen);
-    document.body.style.overflow = willOpen ? 'hidden' : '';
-  }
-  // ESC ile kapat
-  window.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape'){ slToggleMenu(false); }
-  });
-</script>
-<script src="assets/js/main.js"></script>
 
 </body>
 </html>
