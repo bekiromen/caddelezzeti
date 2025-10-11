@@ -213,20 +213,30 @@
     <p class="lead">Öneri ve iş birlikleri için bize ulaşın.</p>
 
     <div class="grid">
-      <form class="card" action="#" method="post"
-        style="padding:16px;background:#1c1c1c;border-radius:12px;">
-        <label>Ad Soyad</label>
-        <input name="name" required
-          style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px">
-        <label>E-posta</label>
-        <input name="email" type="email" required
-          style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px">
-        <label>Mesajınız</label>
-        <textarea name="msg" rows="6" required
-          style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px"></textarea>
-        <button class="btn red" type="submit">Gönder</button>
-        <p style="font-size:12px;color:#bbb;margin-top:8px">Demo form – sunucu bağlantısı yoktur.</p>
-      </form>
+<form
+  action="https://formspree.io/f/xjkaajnk"
+  method="POST"
+  style="padding:16px;background:#1c1c1c;border-radius:12px;"
+  onsubmit="document.getElementById('sentNotice').style.display='block'"
+>
+  <label>Ad Soyad</label>
+  <input name="name" required
+    style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px">
+  
+  <label>E-posta</label>
+  <input name="email" type="email" required
+    style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px">
+  
+  <label>Mesajınız</label>
+  <textarea name="msg" rows="6" required
+    style="padding:12px;border-radius:12px;border:1px solid #333;background:#141414;color:#fff;margin:8px 0 12px"></textarea>
+  
+  <button class="btn red" type="submit">Gönder</button>
+
+  <p id="sentNotice" style="display:none;font-size:14px;color:#4ade80;margin-top:8px">
+    ✅ Mesajınız gönderildi. En kısa sürede dönüş yapacağız.
+  </p>
+</form>
     </div>
 
     <div class="map-container" style="margin-top:32px">
