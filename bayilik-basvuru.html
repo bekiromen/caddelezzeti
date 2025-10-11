@@ -38,7 +38,7 @@
   <div class="container nav-inner">
     <div class="brand">
       <img src="assets/img/logo.png" alt="Cadde Lezzeti logo">
-      <div class="title">Cadde Lezzeti</div>
+      <div class="title">Cadde Burger & Hot Dog</div>
     </div>
     <nav class="menu">
       <a href="index.html">Ana Sayfa</a>
@@ -64,13 +64,13 @@
   <img src="assets/img/sokakburger.png" alt="Bayilik Hero" style="filter: brightness(0.4);">
   <div class="hero-text">
     <h1>Bayilik Başvurusu</h1>
-    <p>Cadde Lezzeti ailesine katılmak için formu doldurun, ekibimiz sizinle iletişime geçsin.</p>
+    <p>Cadde Burger & Hot Dog ailesine katılmak için formu doldurun, ekibimiz sizinle iletişime geçsin.</p>
   </div>
 </section>
 
 <section class="container section">
   <h2 style="text-align:center;margin-bottom:30px;">Bayilik Başvuru Formu</h2>
-  <form id="bayilikForm" onsubmit="handleSubmit(event)">
+  <form id="bayilikForm" action="https://formspree.io/f/mpwyykgb" method="POST" onsubmit="document.getElementById('notice').style.display='block'">
     <div class="form-grid">
       <div>
         <label for="ad">Ad Soyad / Firma Adı</label>
